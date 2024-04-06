@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * An Integer Binary Search Tree
@@ -48,30 +49,139 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
+        ArrayList<BSTNode> treeOrder = new ArrayList<BSTNode>();
+        treeOrder = getInorder();
+        for (int i = 0; i < treeOrder.size(); i++)
+        {
+            for (BSTNode node : treeOrder)
+            {
+                if (val == node.getVal())
+                {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     /**
      * @return ArrayList of BSTNodes in inorder
      */
+
+    // inorder = left, root, right
     public ArrayList<BSTNode> getInorder() {
         // TODO: Complete inorder traversal
-        return null;
+        Stack<BSTNode> order = new Stack<BSTNode>();
+        ArrayList<BSTNode> finalOrder = new ArrayList<BSTNode>();
+        if (root == null)
+        {
+            return finalOrder;
+        }
+        BSTNode currentRoot = root;
+        order.push(currentRoot);
+        while (!order.isEmpty())
+        {
+            while (currentRoot != null)
+            {
+                order.push(currentRoot);
+                currentRoot = currentRoot.getLeft();
+            }
+
+            currentRoot = order.pop();
+            finalOrder.add(currentRoot);
+
+            currentRoot = currentRoot.getRight();
+
+        }
+        return finalOrder;
     }
 
     /**
      * @return ArrayList of BSTNodes in preorder
      */
+
+    // preorder = root, left, right
     public ArrayList<BSTNode> getPreorder() {
         // TODO: Complete preorder traversal
-        return null;
+        Stack<BSTNode> order = new Stack<BSTNode>();
+        ArrayList<BSTNode> finalOrder = new ArrayList<BSTNode>();
+        if (root == null)
+        {
+            return finalOrder;
+        }
+        BSTNode currentRoot = root;
+        order.push(currentRoot);
+
+        while (!order.isEmpty())
+        {
+            currentRoot = order.pop();
+            finalOrder.add(currentRoot);
+
+            if (currentRoot.getRight() != null)
+            {
+                order.push(currentRoot.getRight());
+            }
+            if (currentRoot.getLeft() != null)
+            {
+                order.push(currentRoot.getLeft());
+            }
+            while (currentRoot != null)
+            {
+                order.push(currentRoot);
+                currentRoot = currentRoot.getLeft();
+            }
+
+            currentRoot = order.pop();
+            finalOrder.add(currentRoot);
+
+            currentRoot = currentRoot.getRight();
+
+        }
+        return finalOrder;
     }
 
     /**
      * @return ArrayList of BSTNodes in postorder
      */
+
+    // postorder = left, right, root
     public ArrayList<BSTNode> getPostorder() {
         // TODO: Complete postorder traversal
+        Stack<BSTNode> order = new Stack<BSTNode>();
+        ArrayList<BSTNode> finalOrder = new ArrayList<BSTNode>();
+        if (root == null)
+        {
+            return finalOrder;
+        }
+        BSTNode currentRoot = root;
+        order.push(currentRoot);
+
+        while (!order.isEmpty())
+        {
+            currentRoot = order.pop();
+            finalOrder.add(currentRoot);
+
+            if (currentRoot.getLeft() != null)
+            {
+                order.push(currentRoot.getRight());
+            }
+            if (currentRoot.getRight() != null)
+            {
+                order.push(currentRoot.getLeft());
+            }
+            while (currentRoot != null)
+            {
+                order.push(currentRoot);
+                currentRoot = currentRoot.getLeft();
+            }
+
+            currentRoot = order.pop();
+            finalOrder.add(currentRoot);
+
+            currentRoot = currentRoot.getRight();
+
+        }
+        return finalOrder;
         return null;
     }
 
@@ -83,6 +193,16 @@ public class BST {
      */
     public void insert(int val) {
         // TODO: Complete insert
+        ArrayList<BSTNode> tree = getInorder();
+        for (BSTNode node : tree)
+        {
+            if(node.getVal() > val)
+            {
+                BSTNode newN.val;
+                tree.add(newN);
+            }
+        }
+
     }
 
     /**
