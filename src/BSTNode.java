@@ -36,10 +36,6 @@ public class BSTNode {
     public int getVal() {
         return val;
     }
-    public int setVal(int val)
-    {
-
-    }
 
 
     public String toString() {

@@ -182,7 +182,6 @@ public class BST {
 
         }
         return finalOrder;
-        return null;
     }
 
     /**
@@ -198,7 +197,7 @@ public class BST {
         {
             if(node.getVal() > val)
             {
-                BSTNode newN.val;
+                BSTNode newN = node;
                 tree.add(newN);
             }
         }
